@@ -1,7 +1,7 @@
 package com.java.apply;
 
 public class _____Apply_temp {
-	/*
+	/*sd
 	 * main master
 	 * 
 	1. 지원하기
