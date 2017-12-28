@@ -1,4 +1,5 @@
 package com.java.apply;
+
 public class _____Apply_temp {
 	/*
 	1. 지원하기
