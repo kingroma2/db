@@ -4,7 +4,7 @@ package com.java.apply;
 public class _____Apply_temp {
 
 	/*sd
-	 * main master
+	 * main master test final
 	 * 
 	1. 지원하기
 	2. 지원 결과 확인
