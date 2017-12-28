@@ -1,7 +1,7 @@
 package com.java.apply;
 public class _____Apply_temp {
 	/*
-//	 * hello whi?
+//	 * master 2 do something
  * 
 	 * 
 	1. 지원하기
