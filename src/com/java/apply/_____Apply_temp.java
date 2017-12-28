@@ -1,7 +1,7 @@
 package com.java.apply;
 public class _____Apply_temp {
 	/*
-	 * sdfsdf
+	 * asdf
 	1. 지원하기
 	2. 지원 결과 확인
 	3. status 넣어야겟네
