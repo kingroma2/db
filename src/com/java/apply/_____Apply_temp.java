@@ -1,8 +1,15 @@
 package com.java.apply;
+<<<<<<< HEAD
 
 public class _____Apply_temp {
 	/*sd
 	 * main master
+=======
+public class _____Apply_temp {
+	/*
+//	 * master 2 do somethingskdfj
+ * 
+>>>>>>> refs/remotes/origin/master
 	 * 
 	1. 지원하기
 	2. 지원 결과 확인
