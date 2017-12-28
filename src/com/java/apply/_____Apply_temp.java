@@ -2,7 +2,7 @@ package com.java.apply;
 
 public class _____Apply_temp {
 	/*
-	 * Hello
+	 * main master
 	 * 
 	1. 지원하기
 	2. 지원 결과 확인
