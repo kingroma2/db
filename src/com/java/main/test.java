@@ -3,6 +3,7 @@ package com.java.main;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.java.clan.Clan;
 import com.java.database.DB;
 import com.java.database.DB_All;
 import com.java.database.clan.DB_Clan;
@@ -19,6 +20,48 @@ public class test {
 		//Create_All_Tables t = new Create_All_Tables();
 		
 		
+	}
+	
+	public void dbDeleteClan() {
+		DB_All db = new DB_Clan();
+		db.start();
+		Clan clan = (Clan)db.select(2);
+		db.delete(clan);
+		db.end();
+	}
+	
+	public void dbUpdateClan() {
+		DB_All db = new DB_Clan();
+		db.start();
+		
+		Clan clan = (Clan)db.select(2);
+		clan.setChief_id("change");
+		
+		db.update(clan);		
+		db.end();
+		
+		print(clan.getClan_number()+" / "+clan.getChief_id());
+	}
+	
+	public void dbSelectClan() {
+		DB_All db = new DB_Clan();
+		db.start();
+		
+		Clan clan = (Clan)db.select(2);
+		
+		db.end();
+		
+		print(clan.getClan_number()+" / "+clan.getChief_id());
+	}
+	
+	public void dbInsertClan() {
+		Clan clan = new Clan();
+		clan.setCategori(1);
+		clan.setChief_id("kingroma");
+		DB_All db = new DB_Clan();
+		db.start();
+		db.insert(clan);
+		db.end();
 	}
 	
 	public void dbCreateClan() {

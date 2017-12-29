@@ -1,6 +1,5 @@
 package com.java.clan;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import com.java.util.Status;
@@ -36,7 +35,6 @@ public class Clan {
 	
 	private String position;
 	private String time;
-	private Date account_date;
 	private Date clan_create_date;
 	private String phone;
 	
@@ -204,15 +202,6 @@ public class Clan {
 
 
 
-	public Date getAccount_date() {
-		return account_date;
-	}
-
-
-
-	public void setAccount_date(Date account_date) {
-		this.account_date = account_date;
-	}
 
 
 
