@@ -128,21 +128,6 @@ public class DB_User implements DB_All{
 		return user;
 	}
 	
-	/*
-	private String id;
-	private String pw;
-	private String intro;
-	private String iconUrl;
-	private int status;
-	private String memo;
-	
-	
-	private Date account_date;
-	private Date birth;
-	private String phone;
-	private String position;
-	*/
-	
 	@Override
 	public boolean insert(Object obj) {
 		// TODO Auto-generated method stub
@@ -170,6 +155,7 @@ public class DB_User implements DB_All{
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
+			return false;
 		}finally {
 			try {
 				if(pstmt!=null)
@@ -185,20 +171,6 @@ public class DB_User implements DB_All{
 	public boolean update(Object obj) {
 		// TODO Auto-generated method stub
 		User user = (User)obj;
-		/*
-		private String id;
-		private String pw;
-		private String intro;
-		private String iconUrl;
-		private int status;
-		private String memo;
-		
-		
-		private Date account_date;
-		private Date birth;
-		private String phone;
-		private String position;
-		*/
 		
 		String sql = "update user "
 				+ "set pw = ? , intro = ? , iconUrl = ? , status = ? ,"
@@ -221,15 +193,52 @@ public class DB_User implements DB_All{
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
+			
 			e.printStackTrace();
+			return false;
+		}finally {
+			try {
+			if(pstmt!=null)
+				pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
-		return false;
+		return true;
 	}
 	@Override
 	public boolean delete(Object obj) {
 		// TODO Auto-generated method stub
-		return false;
+		User user = (User)obj;
+		String id = user.getId();
+		String sql = "update user"
+				+ "set status = ? "
+				+ "where id = ?";
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = (PreparedStatement)conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, this.USER_DELETE);
+			pstmt.setString(2, id);
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}finally {
+			try {
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return true;
 	}
 
 	
