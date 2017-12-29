@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 import com.java.database.DB;
 import com.java.database.DB_All;
-import com.java.user.User_Group;
+import com.java.user.User_Clan;
 
-public class DB_User_Group implements DB_All{
+public class DB_User_Clan implements DB_All{
 
 	/*
-	 * private int group;
+	 * private int clan;
 	 * private String user_id;
 	 */
 	
@@ -38,7 +38,7 @@ public class DB_User_Group implements DB_All{
 	public boolean create_table() {
 		// TODO Auto-generated method stub
 		Statement stmt = null;
-		String sql = "create table user_group ( group_number int , user_id varchar(20) )";
+		String sql = "create table user_clan ( clan_number int , user_id varchar(20) )";
 		try {
 			stmt = conn.createStatement();
 			
@@ -60,26 +60,26 @@ public class DB_User_Group implements DB_All{
 
 	@Override
 	public Object select(Object obj) {
-		ArrayList<User_Group> groups = new ArrayList<User_Group>();
+		ArrayList<User_Clan> clans = new ArrayList<User_Clan>();
 		String id = (String)obj;
 		
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		
-		String sql = "select * from user_group where user_id = ?";
+		String sql = "select * from user_clan where user_id = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			result = pstmt.executeQuery();
-			User_Group group = null;
+			User_Clan clan = null;
 
 			while(result.next()) {
-				group = null;
-				group = new User_Group();
+				clan = null;
+				clan = new User_Clan();
 				
-				group.setGroup_number(result.getInt("group_number"));
-				group.setUser_id(result.getString("user_id"));
-				groups.add(group);
+				clan.setClan_number(result.getInt("clan_number"));
+				clan.setUser_id(result.getString("user_id"));
+				clans.add(clan);
 			}
 			
 		}catch(Exception e) {
@@ -96,22 +96,22 @@ public class DB_User_Group implements DB_All{
 			}
 		}
 		
-		return groups;
+		return clans;
 	}
 
 	@Override
 	public boolean insert(Object obj) {
 		// TODO Auto-generated method stub
-		User_Group user_group = (User_Group)obj;
+		User_Clan user_clan = (User_Clan)obj;
 		PreparedStatement pstmt = null;
-		String sql = "insert into user_group (user_id , group_number) value (?,?)";
+		String sql = "insert into user_clan (user_id , clan_number) value (?,?)";
 		try {
-			String user_id = user_group.getUser_id();
-			int group_number = user_group.getGroup_number();
+			String user_id = user_clan.getUser_id();
+			int clan_number = user_clan.getClan_number();
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user_id);
-			pstmt.setInt(2, group_number);
+			pstmt.setInt(2, clan_number);
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -139,17 +139,17 @@ public class DB_User_Group implements DB_All{
 	@Override
 	public boolean delete(Object obj) {
 		// TODO Auto-generated method stub
-		User_Group group = (User_Group)obj;
-		String user_id = group.getUser_id();
-		int group_number = group.getGroup_number();
-		String sql = "delete from user_group where user_id = ? and group_number = ?";
+		User_Clan clan = (User_Clan)obj;
+		String user_id = clan.getUser_id();
+		int clan_number = clan.getClan_number();
+		String sql = "delete from user_clan where user_id = ? and clan_number = ?";
 		
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, user_id);
-			pstmt.setInt(2, group_number);
+			pstmt.setInt(2, clan_number);
 			
 			pstmt.executeUpdate();
 		}catch(Exception e) {

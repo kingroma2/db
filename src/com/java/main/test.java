@@ -5,20 +5,28 @@ import java.util.Date;
 
 import com.java.database.DB;
 import com.java.database.DB_All;
+import com.java.database.clan.DB_Clan;
 import com.java.database.user.DB_User;
+import com.java.database.user.DB_User_Clan;
 import com.java.database.user.DB_User_Friend;
-import com.java.database.user.DB_User_Group;
 import com.java.user.User;
+import com.java.user.User_Clan;
 import com.java.user.User_Friend;
-import com.java.user.User_Group;
 import com.java.util.MyDate;
 
 public class test {
 	public test() {
-	
+		//Create_All_Tables t = new Create_All_Tables();
+		
+		
 	}
 	
-	
+	public void dbCreateClan() {
+		DB_All db = new DB_Clan();
+		db.start();
+		db.create_table();
+		db.end();
+	}
 	public void dbDeleteUserFriend() {
 		DB_All db =  new DB_User_Friend();
 		User_Friend friend = new User_Friend();
@@ -65,45 +73,45 @@ public class test {
 		db.end();
 	}
 	
-	public void dbDeleteUserGroup() {
-		DB_All db = new DB_User_Group();
+	public void dbDeleteUserClan() {
+		DB_All db = new DB_User_Clan();
 		db.start();
-		User_Group group = new User_Group();
-		group.setUser_id("kingroma");
-		group.setGroup_number(1);
+		User_Clan clan = new User_Clan();
+		clan.setUser_id("kingroma");
+		clan.setClan_number(1);
 		
-		db.delete(group);
+		db.delete(clan);
 		
 		db.end();
 	}
 	
-	public void dbInsertUserGroup() {
-		DB_All db = new DB_User_Group();
+	public void dbInsertUserClan() {
+		DB_All db = new DB_User_Clan();
 		db.start();
-		User_Group group = new User_Group();
-		group.setUser_id("kingroma");
-		group.setGroup_number(1);
+		User_Clan clan = new User_Clan();
+		clan.setUser_id("kingroma");
+		clan.setClan_number(1);
 		
-		db.insert(group);
+		db.insert(clan);
 		
 		db.end();
 	}
 	
-	public void dbSelectUserGroup() {
-		DB_All db = new DB_User_Group();
+	public void dbSelectUserClan() {
+		DB_All db = new DB_User_Clan();
 		db.start();
-		ArrayList<User_Group> groups = (ArrayList<User_Group>)db.select("kingroma");
+		ArrayList<User_Clan> clans = (ArrayList<User_Clan>)db.select("kingroma");
 		
-		for(int i = 0 ; i < groups.size() ; i ++) {
-			print(groups.get(i).getGroup_number()+" / "+groups.get(i).getUser_id());
+		for(int i = 0 ; i < clans.size() ; i ++) {
+			print(clans.get(i).getClan_number()+" / "+clans.get(i).getUser_id());
 		}
 		
 		
 		db.end();
 	}
 	
-	public void dbCreateUserGroup() {
-		DB_All db = new DB_User_Group();
+	public void dbCreateUserClan() {
+		DB_All db = new DB_User_Clan();
 		db.start();
 		db.create_table();
 		db.end();

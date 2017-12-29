@@ -1,20 +1,35 @@
 package com.java.main;
 
 import com.java.database.DB_All;
+import com.java.database.clan.DB_Clan;
 import com.java.database.user.DB_User;
+import com.java.database.user.DB_User_Clan;
 import com.java.database.user.DB_User_Friend;
-import com.java.database.user.DB_User_Group;
 
-public class test_create_all_table {
-	public test_create_all_table() {
+public class Create_All_Tables {
+	public Create_All_Tables() {
 		user_init();
+		clan_init();
 		
 	}
 	
 	public void user_init() {
 		this.dbCrateUserFriend();
-		this.dbCreateUserGroup();
+		this.dbCreateUserClan();
 		this.dbCreateUser();
+		
+	}
+	
+	public void clan_init() {
+		this.dbCreateClan();
+		
+	}
+	
+	public void dbCreateClan() {
+		DB_All db = new DB_Clan();
+		db.start();
+		db.create_table();
+		db.end();
 	}
 	
 	public void dbCrateUserFriend() {
@@ -24,8 +39,8 @@ public class test_create_all_table {
 		db.end();
 	}
 	
-	public void dbCreateUserGroup() {
-		DB_All db = new DB_User_Group();
+	public void dbCreateUserClan() {
+		DB_All db = new DB_User_Clan();
 		db.start();
 		db.create_table();
 		db.end();

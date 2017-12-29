@@ -2,7 +2,7 @@ package com.java.apply;
 
 public class Apply_User {
 	
-	private int user_number;
+	private String user_id;
 	private int status; 
 	private String title;
 	private String textarea;
