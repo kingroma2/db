@@ -2,8 +2,7 @@ package com.java.util;
 
 public class Status {
 	/*
-	null
-	ing
+	그냥 팀의 이미지를 하나 내가 만들어야겟군 .
 	*/
 	
 	public static int USER_NORMAL = 1;
@@ -18,6 +17,7 @@ public class Status {
 	
 	public static int APPLY_NORMAL = 1;
 	public static int APPLY_ERROR = -1;
+	public static int APPLY_DELETE = -2;
 	
 	
 	

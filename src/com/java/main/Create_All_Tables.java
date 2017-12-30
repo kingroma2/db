@@ -1,17 +1,21 @@
 package com.java.main;
 
 import com.java.database.DB_All;
+import com.java.database.apply.DB_Apply_Clan;
+import com.java.database.apply.DB_Apply_User;
 import com.java.database.clan.DB_Clan;
+import com.java.database.clan.DB_Clan_Member;
 import com.java.database.user.DB_User;
 import com.java.database.user.DB_User_Clan;
 import com.java.database.user.DB_User_Friend;
 
 public class Create_All_Tables {
 	public Create_All_Tables() {
-		user_init();
-		clan_init();
-		
+		this.user_init();
+		this.clan_init();
+		this.apply_init();
 	}
+	
 	
 	public void user_init() {
 		this.dbCrateUserFriend();
@@ -22,7 +26,39 @@ public class Create_All_Tables {
 	
 	public void clan_init() {
 		this.dbCreateClan();
+		this.dbCreateClanMember();
+	}
+	
+	public void apply_init() {
+		this.dbCreateApplyClan();
+		this.dbCreateApplyUser();
+	}
+	
+	public void dbCreateApplyUser() {
+		DB_All db = new DB_Apply_User();
+		db.start();
 		
+		db.create_table();
+		
+		db.end();
+	}
+	
+	public void dbCreateApplyClan() {
+		DB_All db = new DB_Apply_Clan();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
+	}
+	
+	public void dbCreateClanMember() {
+		DB_All db = new DB_Clan_Member();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
 	}
 	
 	public void dbCreateClan() {

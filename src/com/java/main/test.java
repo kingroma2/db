@@ -3,10 +3,16 @@ package com.java.main;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.java.apply.Apply_Clan;
+import com.java.apply.Apply_User;
 import com.java.clan.Clan;
+import com.java.clan.Clan_Member;
 import com.java.database.DB;
 import com.java.database.DB_All;
+import com.java.database.apply.DB_Apply_Clan;
+import com.java.database.apply.DB_Apply_User;
 import com.java.database.clan.DB_Clan;
+import com.java.database.clan.DB_Clan_Member;
 import com.java.database.user.DB_User;
 import com.java.database.user.DB_User_Clan;
 import com.java.database.user.DB_User_Friend;
@@ -17,9 +23,131 @@ import com.java.util.MyDate;
 
 public class test {
 	public test() {
-		//Create_All_Tables t = new Create_All_Tables();
+		//dbInsertApplyUser();
+		dbSelectApplyUser();
+	}
+	
+	public void dbSelectApplyUser() {
+		DB_All db = new DB_Apply_User();
+		db.start();
+		
+		ArrayList<Apply_User> applies = (ArrayList<Apply_User>)db.select("kingroma");
+		
+		for(int i = 0 ; i < applies.size() ; i ++) {
+			print(applies.get(i).getUser_id()+" / "+applies.get(i).getTitle());
+		}
+		
+		db.end();
+	}
+	
+	public void dbInsertApplyUser() {
+		Apply_User apply = new Apply_User();
+		apply.setCategori(1);
+		apply.setGuest(true);
+		apply.setStatus(1);
+		apply.setTextarea("test");
+		apply.setTitle("title");
+		apply.setUser_id("kingroma");
+		
+		DB_All db = new DB_Apply_User();
+		db.start();
+		
+		db.insert(apply);
+		
+		db.end();
+	}
+	
+	public void dbCreateApplyUser() {
+		//Apply_User apply = null;
+		DB_All db = new DB_Apply_User();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
+	}
+	
+	public void dbSelectApplyClan() {
+		Apply_Clan apply = null;
+		DB_All db = new DB_Apply_Clan();
+		db.start();
+		apply = (Apply_Clan)db.select(1);
+		db.end();
 		
 		
+		print(apply.getClan_number() + " / "+apply.getTitle());
+		
+	}
+	public void dbInsertApplyClan() {
+		Apply_Clan apply = new Apply_Clan();
+		apply.setClan_number(1);
+		apply.setTitle("hello");
+		apply.setTextarea("textarea");
+		apply.setGuest(true);
+		
+		DB_All db = new DB_Apply_Clan();
+		db.start();
+		
+		db.insert(apply);
+		
+		db.end();
+	}
+	
+	public void dbCreateApplyClan() {
+		DB_All db = new DB_Apply_Clan();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
+	}
+	
+	public void dbDeleteClanMember() {
+		Clan_Member member = new Clan_Member();
+		member.setClan_number(1);
+		member.setUser_id("kingroma");
+		
+		DB_All db = new DB_Clan_Member();
+		db.start();
+		
+		db.delete(member);
+		
+		db.end();
+		
+	}
+	
+	public void dbSelectClanMember() {
+		DB_All db = new DB_Clan_Member();
+		db.start();
+		
+		ArrayList<Clan_Member> members = (ArrayList<Clan_Member>)db.select(1);
+		
+		db.end();
+		
+		for(int i = 0 ; i < members.size() ; i ++) {
+			print (members.get(i).getClan_number()+" / "+members.get(i).getUser_id());
+		}
+	}
+	
+	public void dbInsertClanMember() {
+		Clan_Member member = new Clan_Member();
+		member.setClan_number(1);
+		member.setUser_id("kingroma");
+		DB_All db = new DB_Clan_Member();
+		db.start();
+		
+		db.insert(member);
+		
+		db.end();
+	}
+	
+	public void dbCreateClanMember() {
+		DB_All db = new DB_Clan_Member();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
 	}
 	
 	public void dbDeleteClan() {
