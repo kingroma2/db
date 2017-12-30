@@ -13,6 +13,7 @@ import com.java.database.apply.DB_Apply_Clan;
 import com.java.database.apply.DB_Apply_User;
 import com.java.database.clan.DB_Clan;
 import com.java.database.clan.DB_Clan_Member;
+import com.java.database.game.DB_Game;
 import com.java.database.user.DB_User;
 import com.java.database.user.DB_User_Clan;
 import com.java.database.user.DB_User_Friend;
@@ -23,8 +24,16 @@ import com.java.util.MyDate;
 
 public class test {
 	public test() {
-		//dbInsertApplyUser();
-		dbSelectApplyUser();
+		dbCreateGame();
+	}
+	
+	public void dbCreateGame() {
+		DB_All db = new DB_Game();
+		db.start();
+		
+		db.create_table();
+		
+		db.end();
 	}
 	
 	public void dbSelectApplyUser() {
