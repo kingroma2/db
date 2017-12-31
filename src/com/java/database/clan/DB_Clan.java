@@ -99,7 +99,7 @@ public class DB_Clan implements DB_All{
 			clan = new Clan();
 			result = pstmt.executeQuery();
 			
-			while(result.next()) {
+			if(result.next()) {
 				clan = null;
 				clan = new Clan();
 				

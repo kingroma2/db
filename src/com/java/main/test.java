@@ -7,7 +7,7 @@ import com.java.apply.Apply_Clan;
 import com.java.apply.Apply_User;
 import com.java.clan.Clan;
 import com.java.clan.Clan_Member;
-import com.java.controller.Controller;
+import com.java.controller.Controller_Apply;
 import com.java.controller.Controller_User;
 import com.java.database.DB;
 import com.java.database.DB_All;
@@ -26,9 +26,12 @@ import com.java.util.MyDate;
 
 public class test {
 	public test() {
-		
+		controller_apply();
 	}
-	
+	public void controller_apply() {
+		Controller_Apply controller = new Controller_Apply();
+		controller.getApplyUser("kingroma");
+	}
 	public void controller_user() {
 	
 	}

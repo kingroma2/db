@@ -89,7 +89,7 @@ public class DB_Apply_Clan implements DB_All{
 			
 			result = pstmt.executeQuery();
 			//applies = new ArrayList<Apply_Clan>();
-			while(result.next()) {
+			if(result.next()) {
 				apply = null;
 				apply = new Apply_Clan();
 				

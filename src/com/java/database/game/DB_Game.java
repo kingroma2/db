@@ -184,7 +184,7 @@ public class DB_Game implements DB_All{
 
 	
 	public Object selectAll(Object obj) {
-		int game_number = (int)obj;
+		int clan_number = (int)obj;
 		ArrayList<Game> games = null;
 		Game game = null;
 		String sql = "select * from game where home = ? or away = ?";
@@ -193,8 +193,8 @@ public class DB_Game implements DB_All{
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, game_number);
-			pstmt.setInt(2, game_number);
+			pstmt.setInt(1, clan_number);
+			pstmt.setInt(2, clan_number);
 			
 			result = pstmt.executeQuery();
 			games = new ArrayList<Game>();
