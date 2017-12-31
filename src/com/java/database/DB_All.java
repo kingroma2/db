@@ -11,5 +11,5 @@ public interface DB_All {
 	public boolean insert(Object obj);
 	public boolean update(Object obj);
 	public boolean delete(Object obj);
-	
+	public boolean isObject(Object obj);
 }

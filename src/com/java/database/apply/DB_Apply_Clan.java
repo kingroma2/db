@@ -12,7 +12,14 @@ import com.java.util.MyDate;
 import com.java.util.Status;
 
 public class DB_Apply_Clan implements DB_All{
-
+	/*
+	 * private int clan_number;
+	 * private int status;
+	 * private String title;
+	 * private String textarea;
+	 * private boolean guest;
+	 * privaet Date create_date;
+	 */
 	public int APPLY_NORMAL = Status.APPLY_NORMAL;; 
 	public int APPLY_ERROR = Status.APPLY_ERROR;
 	
@@ -64,14 +71,7 @@ public class DB_Apply_Clan implements DB_All{
 		
 		return true;
 	}
-	/*
-	 * private int clan_number;
-	 * private int status;
-	 * private String title;
-	 * private String textarea;
-	 * private boolean guest;
-	 * privaet Date create_date;
-	 */
+	
 	@Override
 	public Object select(Object obj) {
 		// TODO Auto-generated method stub
@@ -206,6 +206,45 @@ public class DB_Apply_Clan implements DB_All{
 			}
 		}
 		return true;
+	}
+
+	/*
+	 * private int clan_number;
+	 * private int status;
+	 * private String title;
+	 * private String textarea;
+	 * private boolean guest;
+	 * privaet Date create_date;
+	 */
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		boolean return_value = false;
+		Apply_Clan apply = (Apply_Clan)obj;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		String sql = "select * from apply_clan where clan_number = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, apply.getClan_number());
+			result = pstmt.executeQuery();
+			
+			if(result.next())
+				return_value = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(result!=null)
+					result.close();
+				if(pstmt!=null) 
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return return_value;
 	}
 
 }

@@ -7,6 +7,8 @@ import com.java.apply.Apply_Clan;
 import com.java.apply.Apply_User;
 import com.java.clan.Clan;
 import com.java.clan.Clan_Member;
+import com.java.controller.Controller;
+import com.java.controller.Controller_User;
 import com.java.database.DB;
 import com.java.database.DB_All;
 import com.java.database.apply.DB_Apply_Clan;
@@ -24,7 +26,20 @@ import com.java.util.MyDate;
 
 public class test {
 	public test() {
-		dbCreateGame();
+		
+	}
+	
+	public void controller_user() {
+	
+	}
+	public void controller_user_insert() {
+		Controller_User controller = new Controller_User();
+		User user = new User();
+		user.setId("king");
+		user.setPw("4235");
+		user.setBirth(new MyDate().getCurrentDate());
+		controller.insertUser(user);
+		System.out.println(user);
 	}
 	
 	public void dbCreateGame() {

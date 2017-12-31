@@ -155,5 +155,39 @@ public class DB_User_Friend implements DB_All{
 		}
 		return false;
 	}
-
+	/*
+	* private String user_id;
+	 * private String friend_id;
+	 * */
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		boolean return_value = false;
+		User_Friend friend = (User_Friend)obj;
+		PreparedStatement pstmt = null;
+		String sql = "select * from user_friend where user_id = ? and friend_id = ?";
+		ResultSet result  = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, friend.getUser_id());
+			pstmt.setString(2, friend.getFriend_id());
+			result = pstmt.executeQuery();
+			
+			if(result.next())
+				return_value = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(result!=null)
+					result.close();
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return return_value;
+	}
+	
 }

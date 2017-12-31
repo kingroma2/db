@@ -3,13 +3,14 @@ package com.java.database.user;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 import com.java.database.DB;
 import com.java.database.DB_All;
 import com.java.user.User;
 import com.java.util.MyDate;
 import com.java.util.Status;
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 
 public class DB_User implements DB_All{
 	public int USER_NORMAL = Status.USER_NORMAL;
@@ -52,7 +53,38 @@ public class DB_User implements DB_All{
 		// TODO Auto-generated method stub
 		db.end();
 	}
-	
+
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		boolean return_value = false;
+		String user_id = (String)obj;
+		String sql = "select id from user where id = ?";
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			result = pstmt.executeQuery();
+			
+			if(result.next()) {
+				if(result.getString("id").equals(user_id))
+					return_value = true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return return_value;
+	}
 
 	@Override
 	public boolean create_table() {
@@ -212,7 +244,7 @@ public class DB_User implements DB_All{
 		// TODO Auto-generated method stub
 		User user = (User)obj;
 		String id = user.getId();
-		String sql = "update user"
+		String sql = "update user "
 				+ "set status = ? "
 				+ "where id = ?";
 		
@@ -264,6 +296,8 @@ public class DB_User implements DB_All{
 		}
 		return user;
 	}
+
+
 	
 	
 

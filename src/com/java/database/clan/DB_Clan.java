@@ -15,22 +15,6 @@ public class DB_Clan implements DB_All{
 	public int CLAN_SPECIAL = Status.CLAN_SPECIAL;
 	public int CLAN_ERROR = Status.CLAN_ERROR;
 	public int CLAN_DELETE = Status.CLAN_DELETE;
-	
-	DB db = null;
-	Connection conn = null;
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		db = new DB();
-		db.start();
-		conn = db.getConn();
-	}
-
-	@Override
-	public void end() {
-		// TODO Auto-generated method stub
-		db.end();
-	}
 	/*
 	private int clan_number;
 	private String chief_id;
@@ -47,6 +31,22 @@ public class DB_Clan implements DB_All{
 	private Date clan_create_date;
 	private String phone;
 	 */
+	DB db = null;
+	Connection conn = null;
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		db = new DB();
+		db.start();
+		conn = db.getConn();
+	}
+
+	@Override
+	public void end() {
+		// TODO Auto-generated method stub
+		db.end();
+	}
+	
 	
 	//AUTO_INCREMENT 
 	@Override
@@ -268,6 +268,12 @@ public class DB_Clan implements DB_All{
 		}
 		
 		return true;
+	}
+
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

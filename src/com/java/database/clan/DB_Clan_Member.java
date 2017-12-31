@@ -164,4 +164,41 @@ public class DB_Clan_Member implements DB_All{
 		return false;
 	}
 
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		Clan_Member member = (Clan_Member)obj;
+		boolean return_value = false;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		String sql = "select * from Clan_Member where user_id = ? and clan_number = ?";
+		try {
+			/*
+			 * private String user_id;
+			 * private int clan_number;
+			 */
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getUser_id());
+			pstmt.setInt(2, member.getClan_number());
+			result = pstmt.executeQuery();
+			
+			if(result.next())
+				return_value = true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(result!=null)
+					result.close();
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return return_value;
+	}
+
+
 }

@@ -218,5 +218,11 @@ public class DB_Game implements DB_All{
 		}
 		return games ;
 	}
+
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

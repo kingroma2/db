@@ -11,6 +11,14 @@ import com.java.database.DB;
 import com.java.database.DB_All;
 
 public class DB_Apply_User implements DB_All{
+	/*
+	 * private String user_id;
+		private int status; 
+		private String title;
+		private String textarea;
+		private boolean guest; 
+		private int categori;
+	 */
 	DB db = null;
 	Connection conn = null;
 	
@@ -165,14 +173,7 @@ public class DB_Apply_User implements DB_All{
 	}
 
 	
-	/*
-	 * private String user_id;
-		private int status; 
-		private String title;
-		private String textarea;
-		private boolean guest; 
-		private int categori;
-	 */
+
 	@Override
 	public boolean delete(Object obj) {
 		// TODO Auto-generated method stub
@@ -199,6 +200,46 @@ public class DB_Apply_User implements DB_All{
 		}
 		
 		return true;
+	}
+	
+	/*
+	 * private String user_id;
+		private int status; 
+		private String title;
+		private String textarea;
+		private boolean guest; 
+		private int categori;
+	 */
+	
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		boolean return_value = false;
+		Apply_User apply = (Apply_User)obj;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		String sql = "select * from apply_user where user_id = ? and categori = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, apply.getUser_id());
+			pstmt.setInt(2, apply.getCategori());
+			result = pstmt.executeQuery();
+			
+			if(result.next())
+				return_value = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(result!=null)
+					result.close();
+				if(pstmt!=null)
+					pstmt.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return return_value;
 	}
 	
 

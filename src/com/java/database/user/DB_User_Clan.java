@@ -57,7 +57,7 @@ public class DB_User_Clan implements DB_All{
 		
 		return true;
 	}
-
+	
 	@Override
 	public Object select(Object obj) {
 		ArrayList<User_Clan> clans = new ArrayList<User_Clan>();
@@ -164,6 +164,36 @@ public class DB_User_Clan implements DB_All{
 		}
 		
 		return false;
+	}
+
+	@Override
+	public boolean isObject(Object obj) {
+		// TODO Auto-generated method stub
+		/*
+		 * private int clan;
+		 * private String user_id;
+		 */
+		User_Clan clan = (User_Clan)obj;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		String sql = "select * from user_clan where clan_number = ? and user_id = ?";
+		boolean return_value = false;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clan.getClan_number());
+			pstmt.setString(2, clan.getUser_id());
+			result = pstmt.executeQuery();
+			
+			if(result.next())
+				return_value = true;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return return_value;
 	}
 
 }
